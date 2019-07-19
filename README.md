@@ -8,6 +8,9 @@ Content of the repo provide packer template which creates ec2 instance with late
 |         ---            |                ---               |
 | vault-dev.json | Packer template json file |
 | scrips/provision.sh | ec2 configuration script |
+| test/integration/default/test.rb | kitchen test file |
+| .kitchen.yml | kitchen configuration file |
+| Gemfile | Specify GEMs required for the kitchen test |
 
 ## Requirements
 - [Packer installed](https://www.packer.io/)
@@ -56,7 +59,48 @@ packer build vault-dev.json
 --> amazon-ebs: AMIs were created:
 us-east-1: ami-xxxxxxxxxxxxxxxx
 ```
+## Prepare your environment for **kitchen**
+- Install needed software:
+```sudo apt-get install rbenv ruby-dev ruby-bundler```
+- Add to your ~/.bash_profile following content: 
+  ```
+  eval "$(rbenv init -)"
+  true
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  ```
+- In order to apply the changes type
+```
+. ~/.bash_profile
+```
+
+## Preparing for kitchen test
+You need to populate in .kitchen.yml, your:
+- aws region
+- availability zone
+- aws ssh key
+- username
+- name of created AWS ami
+- image id of AWS ami
+- instance type
+
+## Test created image with kitchen
+- In order to install all needed gems for the test, change to the directory with **Gemfile** and type: 
+```bundle install --path vendor/bundle``` 
+- Create environment with kitchen framework
+```
+bundle exec kitchen converge
+```
+- Run the kitchen test
+```
+bundle exec kitchen verify
+```
+- Destroy kitchen environment
+```
+bundle exec kitchen destroy
+```
 
 ## TODO
+
+## DONE
 - [x] Create EC2 with vault dev
-- [ ] Kitchen-test
+- [x] Kitchen-test
