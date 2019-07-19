@@ -61,7 +61,9 @@ us-east-1: ami-xxxxxxxxxxxxxxxx
 ```
 ## Prepare your environment for **kitchen**
 - Install needed software:
-```sudo apt-get install rbenv ruby-dev ruby-bundler```
+```
+sudo apt-get install rbenv ruby-dev ruby-bundler
+```
 - Add to your ~/.bash_profile following content: 
   ```
   eval "$(rbenv init -)"
@@ -85,7 +87,9 @@ You need to populate in .kitchen.yml, your:
 
 ## Test created image with kitchen
 - In order to install all needed gems for the test, change to the directory with **Gemfile** and type: 
-```bundle install --path vendor/bundle``` 
+```
+bundle install --path vendor/bundle
+``` 
 - Create environment with kitchen framework
 ```
 bundle exec kitchen converge
