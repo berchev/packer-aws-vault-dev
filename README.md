@@ -65,11 +65,11 @@ us-east-1: ami-xxxxxxxxxxxxxxxx
 sudo apt-get install rbenv ruby-dev ruby-bundler
 ```
 - Add to your ~/.bash_profile following content: 
-  ```
-  eval "$(rbenv init -)"
-  true
-  export PATH="$HOME/.rbenv/bin:$PATH"
-  ```
+```
+eval "$(rbenv init -)"
+true
+export PATH="$HOME/.rbenv/bin:$PATH"
+```
 - In order to apply the changes type
 ```
 . ~/.bash_profile
