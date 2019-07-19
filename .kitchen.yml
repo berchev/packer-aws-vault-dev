@@ -1,0 +1,26 @@
+---
+driver:
+  name: ec2
+  region: us-east-1
+  availability_zone: us-east-1c
+  
+  
+
+transport:
+  ssh_key: "/home/gberchev/Dropbox/ec2_key_pair/us-east-1-key-pair.pem"
+  username: ["ubuntu"]
+
+provisioner:
+  name: shell
+
+platforms:
+  - name: vault-dev-v0.1
+    driver:
+      image_id: ami-0f3122abfa5c4e082
+      instance_type: t2.micro
+
+verifier:
+  name: inspec
+  
+suites:
+  - name: default
